@@ -1,0 +1,17 @@
+{
+// Required
+  "manifest_version": 2,
+  "name": "screenreaderQ",
+  "version": "0.1"
+
+  // Recommended
+  
+  "default_locale": "en",
+  "description": "A plain text description",
+   "content_scripts": [
+    {
+      "matches": ["http://www.quora.com/*"],
+      "js": ["script.js"]
+    }
+  ]
+ }
