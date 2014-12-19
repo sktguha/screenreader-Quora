@@ -3,7 +3,7 @@
 //[].forEach.call(document.getElementsByClassName('vote_item_link add_upvote'),function(u){ u.onclick=function(){ return false;}});
 //[].forEach.call(document.getElementsByTagName("*"),function(el){ el.onclick=function(e){ console.log(e.srcElement); return false;} });
 //location={href:'www.quora.com'}
-f=0;
+f=1;
 })();
 f && speak(location.href);
 var index=0;
