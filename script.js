@@ -169,7 +169,7 @@ function share(){
 	var timeId= setInterval(function(){
 		counter++;  
 		var shareBtn=[].filter.call(document.getElementsByTagName("input"),function(e){ 
-		return e.className=='submit_button'})[0];
+		return e.className=='submit_button' && e.value=="Share"})[0];
 		if(shareBtn){ 
 			shareBtn.click();
 			clearInterval(timeId); 
@@ -219,6 +219,7 @@ dv.getElementsByClassName("QuestionText")[0] &&	(dv=dv.getElementsByClassName("Q
 placeAtStart(dv); 
 mfss(true);
 //where() && where().scrollIntoView();
+//mvis();
 cpl.scrollIntoView();
 }
 
@@ -290,7 +291,7 @@ function speakinit()
 }
 function speak(text)
 {
-var utterance = new SpeechSynthesisUtterance(text.split("<speedofvoice1389867680568>")[0]);
+var utterance = new SpeechSynthesisUtterance(text);
 //var rate=parseInt(text.split("<speedofvoice1389867680568>")[1]);
 var voices = window.speechSynthesis.getVoices();
 var ofv=voices.filter(function(v){return v.localService==true})[0];
