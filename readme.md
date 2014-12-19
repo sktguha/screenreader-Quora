@@ -1,12 +1,16 @@
 <pre>
 Screenreader for quora
-screenreader for quora a screenreader in chrome for blind people and also normal-sighted people who may just need to give their eyes a break
-so here are basic functionalities keymap. TO start with press / key on your keyboard. Thus the first question in the feed will be selected and
-SPOKEN aloud. similiarly (.) key for jumping to previous question. If you are on a question for more than 1.5 secs the answer is automatically expanded
+screenreader for quora a screenreader in chrome for blind people 
+and also normal-sighted people who may just need to give their eyes a break
+so here are basic functionalities keymap. 
+TO start with press / key on your keyboard. 
+Thus the first question in the feed will be selected and
+SPOKEN aloud. similiarly (.) key for jumping to previous question. 
+If you are on a question for more than 1.5 secs the answer is automatically expanded
 
 KEYMAP 
 General
-/ - jump to next question or (next answer in a page for one question only as www.quora.com/what-are-the-etc )
+/ - jump to next question or (next answer in a page for one question only ex www.quora.com/what-are-the-etc )
 . - jump to prev question or (prev answer in a page for one question only)
 u - upvote the current answer/question( hereafter current refers to the questions/answer where the beginning of text selection lies)
 d - downvote the current answer/question
