@@ -1,4 +1,3 @@
-<pre>
 Screenreader for quora
 screenreader for quora a screenreader in chrome for blind people and also normal-sighted people who may just need to give their eyes a break
 so here are basic functionalities keymap. TO start with press / key on your keyboard. Thus the first question in the feed will be selected and
@@ -36,4 +35,3 @@ LIMITATIONS
 -no keymap, voice properties customisation
 -doesn't read notifications  properly
 - other elements as search etc not supported yet
-</pre>
