@@ -21,5 +21,6 @@
         "js": ["script.js"], 
         "run_at": "document_idle"
     }
-    ]
+    ],
+	"options_page": "readme.md"
  }
