@@ -1,11 +1,10 @@
 (function fakers(){
-document.getElementsByClassName('ErrorBanner fade_in')[0].style.display='none';
-[].forEach.call(document.getElementsByClassName('vote_item_link add_upvote'),function(u){ u.onclick=function(){ return false;}});
-[].forEach.call(document.getElementsByTagName("*"),function(el){ el.onclick=function(e){ console.log(e.srcElement); return false;} });
+//document.getElementsByClassName('ErrorBanner fade_in')[0].style.display='none';
+//[].forEach.call(document.getElementsByClassName('vote_item_link add_upvote'),function(u){ u.onclick=function(){ return false;}});
+//[].forEach.call(document.getElementsByTagName("*"),function(el){ el.onclick=function(e){ console.log(e.srcElement); return false;} });
 //location={href:'www.quora.com'}
 f=0;
-});
-f=1;
+})();
 f && speak(location.href);
 var index=0;
 var root=[].reduce.call(document.getElementsByClassName("PagedList"),function(p,n){ return p.children.length>n.children.length?p:n; })
@@ -41,22 +40,61 @@ window.onblur=function(){ window.speechSynthesis.cancel(); }
 document.onkeypress=function(e){
     var kc=(e.keyCode) ? e.keyCode : e.which;
     var ks=String.fromCharCode(kc).toLowerCase();
-	//console.log("kc"+kc+" string "+ks);
+	console.log("kc"+kc+" string "+ks);
     //mvis();
-    if(ks=="'"){
+    if(kc==13){  //enter key
+		var curr;
+		if(window.getSelection().getRangeAt(0)) {
+			curr=window.getSelection().focusNode;
+			curr=curr.parentElement;
+		}
+    	curr && curr.click && curr.click() && console.log("click from enter");
+    }
+    if(ks==","){
         mfss();
+        triggerLoad(where() || cpl);
         speak(window.getSelection().toString());
     }
-    if(ks==";"){
+    if(ks=="m"){
         mbss();
+        triggerLoad(where() || cpl);
         speak(window.getSelection().toString());
-    }   
+    } 
+    if(ks=="'"){
+      mfc();
+      triggerLoad(where() || cpl);
+      speak(window.getSelection().toString());  
+    }
+    if(ks==";"){
+      mbc();
+      triggerLoad(where() || cpl);
+      speak(window.getSelection().toString());  
+    }
+    if(ks=="]"){
+      mfw();
+      triggerLoad(where() || cpl);
+      speak(window.getSelection().toString());  
+    }
+    if(ks=="["){
+      mbw();
+      triggerLoad(where() || cpl);
+      speak(window.getSelection().toString());  
+    }
     if(ks=="w") //where am I
       speak(location.href);
-    if(ks=="/")
+    if(ks=="/"){
       shift(1);
-	if(ks==".")
+      triggerLoad(where() || cpl);
+      speak(window.getSelection().toString());
+    }
+	if(ks=="."){
 	  shift(0);
+	  triggerLoad(where() || cpl);
+      speak(window.getSelection().toString());
+	}
+	if("m,.;'\[\]".indexOf(ks)!=-1){
+		mvis();
+	}
 	if(ks=="t")
 	  speakTags();
 	if(ks=='u')
@@ -64,7 +102,7 @@ document.onkeypress=function(e){
 	if(ks=='d')
 	  downvote();
 	if(ks=='c')
-	  comment();
+	  commentSpeak();
 	if(ks=='s')
 	  share(); 
 	if(ks=='n'){
@@ -77,9 +115,20 @@ document.onkeypress=function(e){
 //Array.prototype.some.call(pl,function(e,i,arr){  cpl=pl[i]; return e.getElementsByClassName("QuestionText")[0];})
 //pl=Array.prototype.filter.call(pl,function(p){ return p.getElementsByClassName("QuestionText")[0] }); 
 
-function comment(){
+function commentSpeak(){
 	var dv=where() || cpl;
-     	
+    var commentLink=dv.getElementsByClassName('view_comments supp ')[0];
+	commentLink && commentLink.click();
+	var lc=function(){
+		var comments=dv.getElementsByClassName('threaded_comments')[0];
+		if( ! comments.classList.contains('hidden') ){
+			clearInterval(timer);
+			placeAtStart(comments);
+			mfss();
+			speak(window.getSelection().toString());
+		}
+	}
+	var timer=window.setInterval(lc,1000);
 }
 
 function downvote(){
@@ -174,8 +223,22 @@ cpl.scrollIntoView();
 }
 
 function isvisible(dv){
-	return dv.getClientRects()[0].height;
+return dv && (dv.getClientRects()[0] && dv.getClientRects()[0].height) ;
 }
+
+//start loading contents after 1.5 sec and focus not moved from current pagedlist_item
+function triggerLoad(div){
+ 	//console.log('passing arg',dv);
+	window.setTimeout(
+	function(){
+	//console.log('load triggered',dv.id,where().id);
+	if(where().id==div.id){
+	console.debug('click');
+	var expand=[].filter.call(div.getElementsByClassName('more_link'),function(a){ return a.getAttribute('action_click')=="ContentExpand";})[0];
+	expand && expand.click();  
+	}
+	} ,1500);
+};
 
 function get(d){
 	//down
@@ -201,22 +264,6 @@ function get(d){
 	return cpl;
 }
 
-
-//start loading contents after 1.5 sec and focus not moved from pagedlist_item
-function triggerLoad(dv){
- 	//console.log('passing arg',dv);
-	dv.getElementsByClassName('more_link')[0] && dv.getElementsByClassName('more_link')[0].click();
-	window.setTimeout(
-	function(){
-	//console.log('load triggered',dv.id,where().id);
-	if(where().id==dv.id){
-	console.debug('click');
-	var moreLinks=dv.getElementsByClassName('more_link');
-	moreLinks.length && [].forEach.call(moreLinks,function(l){ l.click(); });
-	}
-	} ,1500);
-};
-
 //place selection at start of given element
 function placeAtStart(dv){
 	var rn=new Range();
@@ -235,32 +282,6 @@ function select(ele){
 	var sl=window.getSelection();
 	sl.removeAllRanges();
 	sl.addRange(rn)
-}
-mnl=5; mxl=200;
-function mfss(modern){
-    var sel = window.getSelection(); 
-    sel.modify("move","forward","character");
-    if(modern) //new version
-    sel.modify("move","backward","character");
-    
-    sel.modify("extend","forward","sentence");
-    
-    sel = window.getSelection(); 
-    if(sel.toString().length<mnl)
-        mfss();
-}
-/**
- * move backward by using system functions by one sentence
- */
-function mbss()
-{   mxl=200; mnl=10;
-    var sel = window.getSelection(); 
-    sel.modify("move","backward","character");
-    sel.modify("extend","backward","sentence");
-
-    sel=window.getSelection();
-    if(sel.toString().length<mnl)
-        mbss();    
 }
 
 function speakinit()
@@ -308,35 +329,4 @@ break;
 if(el && el.className=="pagedlist_item")
 return el;
 
-}
-
-function mvis()  
-{
-    var scf=0.3;
-    var ele=window.getSelection().getRangeAt(0);        
-    var sel = ele.getBoundingClientRect();               
-    var dw  = document.documentElement.clientWidth;     
-    var dh = document.documentElement.clientHeight;       
-    dw=window.innerWidth;
-    dh=window.innerHeight;
-    var st=sel.top;
-    var sb=sel.bottom;
-    var db=dh; 
-    var dt=0;
-    var amt=0;
-    if(st<0)     //too much up
-    {
-        //alert("st<0");
-        amt=-1*dh*scf;//341 dh*scf; 
-    }
-    if(sb>db) //too much down
-    {
-        //alert("sb>db");
-        amt=dh*scf; //341;    
-    }
-    window.scrollBy(0, amt);
-     //console.log(sel.top+" " +sel.right+" "+sel.bottom+" "+ sel.left+"\n"+dw+" "+dh+" amt= "+amt);        
-	 //console.error("scroll value "+amt);	 
-	if(amt>500) 
-        console.debug("scroll value too much "+amt);
 }
