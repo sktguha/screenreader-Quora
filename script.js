@@ -81,7 +81,7 @@ document.onkeypress=function(e){
 		speak(window.getSelection().toString());  
 	}
 	if(ks=="w") //where am I
-		speak(location.href);
+		speak(document.title || location.href);
 	if(ks=="/"){
 		shift(1);
 		triggerLoad(where() || cpl);
