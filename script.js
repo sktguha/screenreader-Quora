@@ -5,7 +5,7 @@
 //	location={href:'www.quora.com'}
 	f=1;
 })();
-speak(location.href);
+speak(document.title || location.href);
 var index=0;
 var root=[].reduce.call(document.getElementsByClassName("PagedList"),function(p,n){ return p.children.length>n.children.length?p:n; })
 //document.getElementsByClassName("Feed PagedList UniversalPageFeed");
