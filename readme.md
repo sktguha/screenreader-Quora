@@ -39,6 +39,7 @@ enter key - if any clickable link exists under the current text selection , it t
 
 If you feel you are lost just press . or / key. It will jump to next question
 LIMITATIONS
+-Not working properly at reading notifications
 -doesn't allow to write answer
 -no keymap, voice properties customisation
 -doesn't read notifications  properly
