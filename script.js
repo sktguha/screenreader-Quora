@@ -230,6 +230,8 @@ function isvisible(dv){
 //start loading contents after 1.5 sec and focus not moved from current pagedlist_item
 function triggerLoad(div){
 	//console.log('passing arg',dv);
+	if(!div.id)
+	  return;
 	window.setTimeout(
 			function(){
 				//console.log('load triggered',dv.id,where().id);

@@ -7,8 +7,8 @@ function mfss(modern) {
 		sel.modify("move", "backward", "character");
 	sel.modify("extend", "forward", "sentence");
 	sel = window.getSelection();
-	if (sel.toString().length < mnl)
-		mfss();
+	//if (sel.toString().length < mnl)
+	//	mfss();
 }
 /**
  * move backward by using system functions by one sentence
@@ -21,8 +21,8 @@ function mbss() {
 	sel.modify("extend", "backward", "sentence");
 
 	sel = window.getSelection();
-	if (sel.toString().length < mnl)
-		mbss();
+	//if (sel.toString().length < mnl)
+	//	mbss();
 }
 
 /**
