@@ -34,7 +34,7 @@ m - jump to previous line and read it
 [ - jump to prev word and read it
 
 Others
-w - where am I key. Reads the current address on the address bar
+w - where am I key. Reads the current title on the title bar
 enter key - if any clickable link exists under the current text selection , it triggers click. Not fully supported
 
 If you feel you are lost just press . or / key. It will jump to next question
