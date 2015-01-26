@@ -1,5 +1,7 @@
 <pre>
 Screenreader for quora
+
+Find it on the chrome web store https://chrome.google.com/webstore/detail/screenreader-for-quora/bnfnieeggjcbilkjkgbaebeenonchgmf
 screenreader for quora a screenreader in chrome for blind people 
 and also normal-sighted people who may just need to give their eyes a break
 so here are basic functionalities keymap. 
