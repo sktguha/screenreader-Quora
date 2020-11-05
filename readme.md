@@ -1,4 +1,5 @@
 <pre>
+Not sure if this works as of now. Its really old one and code quality is also not that great<br/> Will try to make it working if I get time
 Screenreader for quora
 
 Find it on the chrome web store https://chrome.google.com/webstore/detail/screenreader-for-quora/bnfnieeggjcbilkjkgbaebeenonchgmf
