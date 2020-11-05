@@ -1,4 +1,4 @@
-<pre>
+
 Not sure if this works as of now. Its really old one and code quality is also not that great<br/> Will try to make it working if I get time
 Screenreader for quora
 
@@ -47,4 +47,4 @@ LIMITATIONS
 -no keymap, voice properties customisation
 -doesn't read notifications  properly
 - other elements as search etc not supported yet
-</pre>
+
